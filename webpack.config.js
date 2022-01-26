@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -14,21 +15,39 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules',
+    ],
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    sourceMapFilename: '[file].map[query]',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: false,
+      template: 'index.html',
+      templateParameters: {
+        scriptFileName: 'bundle.js',
+      },
+    }),
+  ],
   devServer: {
     client: {
       overlay: true,
       progress: true,
     },
+    hot: true,
     watchFiles: ['src/**/*.js', 'public/**/*.ts'],
     static: {
       directory: path.join(__dirname, 'public'),
       publicPath: '/',
+      serveIndex: true,
     },
     compress: true,
     port: 9000,
