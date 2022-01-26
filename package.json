@@ -4,7 +4,8 @@
   "description": "Personal website",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --env NODE_ENV=development",
+    "build-prod": "webpack --config webpack.config.js --env NODE_ENV=production",
     "start": "webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
