@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isNodeProd = env => env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: 'development',
+  mode: isNodeProd(process.env) ? 'production' : 'development',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
@@ -25,7 +25,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: isNodeProd ? path.resolve(__dirname, 'build') : path.resolve(__dirname, 'dist'),
+    path: isNodeProd(process.env) ? path.resolve(__dirname, 'build') : path.resolve(__dirname, 'dist'),
     publicPath: '/',
     sourceMapFilename: '[file].map[query]',
   },
