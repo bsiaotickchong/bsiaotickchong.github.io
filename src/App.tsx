@@ -1,6 +1,11 @@
 import React, { ReactElement } from 'react';
 import ReactDOM from 'react-dom';
 import { createUseStyles } from 'react-jss';
+import { Provider } from 'react-redux';
+import { useAppDispatch } from './app/hooks';
+import store from './app/store';
+import { Crowd } from './components/crowd/Crowd';
+import { ChatService } from './services/ChatService';
 
 const useStyles = createUseStyles({
   mainContainer: {
@@ -13,17 +18,23 @@ const useStyles = createUseStyles({
 
 function App(): ReactElement {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+
+  new ChatService(dispatch);
 
   return (
     <div className={ classes.mainContainer }>
-      Testing
+      Testing this out
+      <Crowd />
     </div>
   );
 }
 
 function renderDOM() {
   ReactDOM.render(
-    <App />,
+    <Provider store={ store }>
+      <App />
+    </Provider>,
     document.getElementById('app')
   );
 }
