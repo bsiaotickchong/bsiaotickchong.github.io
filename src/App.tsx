@@ -24,7 +24,6 @@ function App(): ReactElement {
 
   return (
     <div className={ classes.mainContainer }>
-      Testing this out
       <Crowd />
     </div>
   );
