@@ -14,4 +14,4 @@ After a few minutes the updated files should be available at [bsiaotickchong.git
 
 ### Deploying via CI
 
-The "CI" workflow at `.github/workflows/main.yml` is responsible for building and deploying upon merging a PR to `main`. Simply create a PR with a branch and merge it into `main` to trigger the workflow.
+The "CD" workflow at `.github/workflows/cd.yml` is responsible for building and deploying upon merging a PR to `main`. Simply create a PR with a branch and merge it into `main` to trigger the workflow.
